@@ -41,10 +41,10 @@
 
 const main = document.querySelector('.cardsContainer');
 
-console.log(main)
+// console.log(main)
 
 const loadFav = (list) => {
-  console.log(list)
+  // console.log(list)
   if (list && list != null) {
     list.split(',')
       .forEach((item) => {
@@ -60,7 +60,7 @@ loadFav(localStorage.getItem('favs'));
 
 const addFav = (id) => {
   if (id && id != null) {
-    console.log(id)
+    // console.log(id)
     const child = main.children[id - 1]
     child.dataset.fav = true;
     child.classList.add('red');
@@ -95,7 +95,7 @@ const removeFav = (id) => {
 }
 
 const callBack = (elm) => {
-  console.log(elm.target.dataset.fav)
+  // console.log(elm.target.dataset.fav)
   const test = elm.target.dataset.fav
   if (test == 'false') addFav(elm.target.id)
   else if (test == 'true') removeFav(elm.target.id)
