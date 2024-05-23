@@ -38,3 +38,68 @@
  */
 
 // Your code goes here...
+
+const main = document.querySelector('.cardsContainer');
+
+console.log(main)
+
+const loadFav = (list) => {
+  console.log(list)
+  if (list && list != null) {
+    list.split(',')
+      .forEach((item) => {
+        if (item) {
+          main.children[item - 1].dataset.fav = true;
+          main.children[item - 1].classList.add('red')
+        }
+      })
+  }
+}
+
+loadFav(localStorage.getItem('favs'));
+
+const addFav = (id) => {
+  if (id && id != null) {
+    console.log(id)
+    const child = main.children[id - 1]
+    child.dataset.fav = true;
+    child.classList.add('red');
+
+    let dataArr = localStorage.getItem('favs')
+
+    dataArr += `,${id}`;
+
+    localStorage.setItem('favs', dataArr);
+
+
+  }
+}
+
+const removeFav = (id) => {
+
+  const child = main.children[id - 1];
+
+  child.dataset.fav = false;
+  child.classList.remove('red')
+
+  let dataArr = localStorage.getItem('favs').split(',')
+
+  if (dataArr.length > 1) {
+    dataArr.splice(dataArr.indexOf(id), 1).join(',');
+  } else {
+    dataArr = '';
+  }
+
+  localStorage.setItem('favs', dataArr);
+
+}
+
+const callBack = (elm) => {
+  console.log(elm.target.dataset.fav)
+  const test = elm.target.dataset.fav
+  if (test == 'false') addFav(elm.target.id)
+  else if (test == 'true') removeFav(elm.target.id)
+  else throw new Error('Callback failed!')
+}
+
+main.addEventListener('click', callBack);

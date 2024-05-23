@@ -13,7 +13,7 @@
 
 // Your code goes here...
 
-
+const allItems = document.querySelectorAll('.item')
 
 /**
  * @task
@@ -24,6 +24,7 @@
 
 // Your code goes here
 
+const main = document.querySelector('#main');
 
 
 /**
@@ -35,7 +36,7 @@
 
 // Your code goes here
 
-
+const favs = document.querySelector('#favs');
 
 /**
  * @task
@@ -48,7 +49,18 @@
 
 // Your code goes here
 
-
+const updateCollections = (id, direction) => {
+  const item = document.getElementById(id);
+  if (direction == 'toMain') {
+    item.firstChild.className = 'fa-solid fa-heart-circle-plus';
+    main.appendChild(item)
+  } else if (direction === 'toFavs') {
+    item.firstChild.className = 'fa-solid fa-heart-crack';
+    favs.appendChild(item)
+  } else {
+    throw new Error('Update collections ran into a problem!');
+  }
+}
 
 /**
  * @task
@@ -67,3 +79,13 @@
 // Your code goes here...
 
 
+allItems.forEach((elm) => {
+  const id = elm.id;
+  elm.addEventListener('click', () => {
+    if (elm.parentNode.id == 'main') {
+      updateCollections(id, 'toFavs');
+    } else {
+      updateCollections(id, 'toMain');
+    }
+  })
+})

@@ -13,7 +13,7 @@
 
 // Your code goes here...
 
-
+const allItems = document.querySelectorAll('.item');
 
 /**
  * @task
@@ -24,7 +24,9 @@
 
 // Your code goes here...
 
+const sortBtn = document.querySelectorAll('.sortBtn');
 
+const main = document.querySelector('#main');
 
 /**
  * @task
@@ -41,6 +43,28 @@
 
 
 
+const sortData = (direction) => {
+  const newArr = Array.from(allItems)
+  if (direction === 'asc') {
+    newArr.sort()
+    newArr.forEach((item) => {
+      main.append(item)
+    })
+  } else if (direction === 'desc') {
+    newArr.sort((a, b) => {
+      if (a.id < b.id) return 1;
+      else if (a.id > b.id) return -1;
+      else return 0;
+    })
+    newArr.forEach((item) => {
+      main.append(item)
+    })
+  } else {
+    throw new Error('The sortData function ran into a problem!');
+  }
+
+}
+
 /**
  * @task
  * Iterate through the every item in sortBtn NodeList and apply the
@@ -52,3 +76,10 @@
 // Your code goes here...
 
 
+sortBtn.forEach((btn) => {
+  console.log(btn.dataset)
+  btn.addEventListener('click', () => {
+    sortData(btn.dataset.sortdir)
+    console.log(btn.dataset)
+  })
+})
