@@ -52,10 +52,11 @@ const favs = document.querySelector('#favs');
 const updateCollections = (id, direction) => {
   const item = document.getElementById(id);
   if (direction == 'toMain') {
-    item.firstChild.className = 'fa-solid fa-heart-circle-plus';
+    console.log(item.children);
+    item.children[0].className = 'fa-solid fa-heart-circle-plus';
     main.appendChild(item)
   } else if (direction === 'toFavs') {
-    item.firstChild.className = 'fa-solid fa-heart-crack';
+    item.children[0].className = 'fa-solid fa-heart-crack';
     favs.appendChild(item)
   } else {
     throw new Error('Update collections ran into a problem!');

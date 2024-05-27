@@ -67,11 +67,14 @@ const addFav = (id) => {
 
     let dataArr = localStorage.getItem('favs')
 
-    dataArr += `,${id}`;
+    if (dataArr != null) {
+      dataArr += `,${id}`;
+
+    } else {
+      dataArr = id;
+    }
 
     localStorage.setItem('favs', dataArr);
-
-
   }
 }
 
