@@ -52,7 +52,7 @@ const favs = document.querySelector('#favs');
 const updateCollections = (id, direction) => {
   const item = document.getElementById(id);
   if (direction == 'toMain') {
-    console.log(item.children);
+    // console.log(item.children);
     item.children[0].className = 'fa-solid fa-heart-circle-plus';
     main.appendChild(item)
   } else if (direction === 'toFavs') {
